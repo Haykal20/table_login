@@ -1,0 +1,57 @@
+1. Bagaimana Anda mengimplementasikan DataTables pada aplikasi yang sedang Anda kerjakan?
+ - Saya menggunakan Laragon sebagai local server yang mendukung PHP dan MySQL.
+ - Saya menambahkan library DataTables melalui CDN dan menghubungkannya dengan Bootstrap
+agar tampilannya lebih rapi.
+ - Tabel HTML diberi ID `#mahasiswaTable`, lalu diaktifkan menggunakan jQuery:
+`$('#mahasiswaTable').DataTable();`.
+ - Data ini dapat untuk mengambil data langsung dari database MySQL menggunakan PHP,
+Data mahasiswa bisa diambil dari database dan ditampilkan di tabel.
+ - Pengambilan data dapat dibuat dengan PHP + MySQL lalu hasilnya di-echo ke HTML table.
+ 
+ • Struktur
+ - index.php: Halaman login pengguna.
+Fungsi: halaman masuk utama sistem
+Fitur: Form login dengan validasi sederhana, Enkripsi password MD5, Session management dasar
+
+ - register.php: Halaman registrasi akun.
+ Fungsi: Pendaftaran akun baru
+Fitur: Form registrasi dengan 5 field (username, password, nama, NIM)
+Pengecekan duplikasi username, Penyimpanan data ke 2 tabel (`users` dan `mahasiswa`)
+
+ - dashboard.php: Halaman utama setelah login.
+Fungsi: Tampilan setelah login berhasil
+Fitur Utama: Navbar dengan info user, DataTables untuk menampilkan data mahasiswa, Proteksi session (`session_start()` + pengecekan login)
+
+ - tugas.html: Halaman yang menampilkan data mahasiswa dengan DataTables.
+Fungsi: File ini sudah terintegrasi dalam dashboard.php
+Fitur: Versi statis (tugas.html), untuk dinamis (dashboard.php), dashboard.php mengambil data dari database.
+
+ - config.php: File koneksi ke database Mysql.
+ - logout.php: Untuk keluar dari sesi login.
+ 
+2. Sebutkan fitur-fitur apa saja yang terdapat pada DataTables tersebut:
+ • Pencarian otomatis (search box).
+-Terdapat kotak pencarian di bagian atas tabel
+-Mencari data secara real-time di semua kolom sekaligus
+-Contoh: Ketik "Ilkom" akan langsung memfilter baris yang mengandung teks tersebut
+
+• Pengurutan kolom (sorting).
+- Klik header kolom untuk mengurutkan:
+- Klik 1x: Ascending (A-Z/0-9)
+- Klik 2x: Descending (Z-A/9-0)
+- Mendukung multi-column sorting (tekan Shift+ klik kolom lain)
+
+ • Pagination (pembagian halaman otomatis).
+- Data dibagi menjadi beberapa halaman
+- Pilihan tampilan per halaman: 10, 25, 50, atau 100 baris
+- Navigasi halaman: First/Previous/Next/Last
+
+• Desain yang responsif dan terintegrasi dengan Bootstrap 5.
+- Tabel menyesuaikan lebar layar (desktop/tablet/mobile)
+- Scroll horizontal otomatis jika kolom terlalu banyak
+- Tetap rapi berkat integrasi dengan Bootstrap 5
+
+• Interaktif tanpa perlu reload halaman
+- Semua operasi (search/sort/paging) diproses di **browser**
+- Transisi cepat karena tidak perlu request ke server
+- Animasi halus saat berganti halaman atau sorting
